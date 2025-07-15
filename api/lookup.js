@@ -24,8 +24,26 @@ export default async function handler(req, res) {
       body: JSON.stringify({ postcode, paon })
     });
 
-    const data = await response.json();
-    res.status(200).json(data);
+    const result = await response.json();
+
+    // 🛠 Shape the response to match frontend expectations
+    const shapedData = {
+      epc: {
+        currentEnergyRating: result?.EnergyRating || '',
+        propertyType: result?.PropertyType || '',
+        builtForm: result?.BuiltForm || ''
+      },
+      address: {
+        paon: paon || '',
+        street: result?.Street || '',
+        town: result?.Town || '',
+        district: result?.District || '',
+        county: result?.County || '',
+        postcode: postcode || ''
+      }
+    };
+
+    res.status(200).json(shapedData);
   } catch (err) {
     console.error('Error fetching property data:', err);
     res.status(500).json({ error: 'Error fetching property data' });

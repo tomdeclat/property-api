@@ -29,14 +29,14 @@ export default async function handler(req, res) {
         totalFloorArea: result?.epc?.totalFloorArea?.value || '',
         lodgementDate: result?.epc?.lodgementDate || ''
       },
-      address: {
-        paon: result?.address?.paon || '',
-        street: result?.address?.street || '',
-        town: result?.address?.town || '',
-        county: result?.address?.county || '',
-        postcode: result?.address?.postcode || '',
-        country: result?.address?.country || 'UK'
-      }
+address: {
+  paon: result?.property?.address?.paon || '',
+  street: result?.property?.address?.street || '',
+  town: result?.property?.address?.town || '',
+  county: result?.property?.address?.county || '',
+  postcode: result?.property?.address?.postcode || '',
+  country: result?.property?.address?.country || 'UK'
+}
     };
 
     res.status(200).json(shapedData);

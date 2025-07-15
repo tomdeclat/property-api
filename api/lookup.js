@@ -27,23 +27,23 @@ export default async function handler(req, res) {
     const result = await response.json();
 
     // ✅ Shape data to return exactly what frontend needs
-    const shapedData = {
-      epc: {
-        currentEnergyRating: result?.EnergyRating || '',
-        propertyType: result?.PropertyType || '',
-        builtForm: result?.BuiltForm || '',
-        floorArea: result?.TotalFloorArea?.value || '',
-        epcDate: result?.LodgementDate || ''
-      },
-      address: {
-        paon: result?.Paon || paon || '',
-        street: result?.Street || '',
-        town: result?.Town || '',
-        county: result?.County || '',
-        postcode: result?.Postcode || postcode || '',
-        country: 'UK'
-      }
-    };
+const shapedData = {
+  epc: {
+    currentEnergyRating: result?.EnergyRating || '',
+    propertyType: result?.PropertyType || '',
+    builtForm: result?.BuiltForm || '',
+    floorArea: result?.TotalFloorArea?.value || '',
+    epcDate: result?.LodgementDate || ''
+  },
+  address: {
+    paon: result?.Paon || paon || '',
+    street: result?.Street || '',
+    town: result?.Town || '',
+    county: result?.County || '',
+    postcode: result?.Postcode || postcode || '',
+    country: 'UK'
+  }
+};
 
     res.status(200).json(shapedData);
   } catch (err) {

@@ -27,7 +27,9 @@ export default async function handler(req, res) {
         propertyType: result?.epc?.propertyType || '',
         builtForm: result?.epc?.builtForm || '',
         totalFloorArea: result?.epc?.totalFloorArea?.value || '',
-        lodgementDate: result?.epc?.lodgementDate || ''
+        lodgementDate: result?.epc?.lodgementDate || '',
+        expiryDate: result?.epc?.expiryDate || '', // Add this line
+        status: result?.epc?.status || null // You might also want the status object
       },
 address: {
   paon: result?.property?.address?.paon || '',
@@ -36,6 +38,7 @@ address: {
   county: result?.property?.address?.county || '',
   postcode: result?.property?.address?.postcode || '',
   country: result?.property?.address?.country || 'UK'
+  
 }
     };
 
